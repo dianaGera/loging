@@ -1,13 +1,14 @@
-import os
 import json
+import os
 from io import BytesIO
-from environs import Env
-from flask import Flask, render_template, request, Response
-from flask import jsonify
-from extensions import db, migrate
-from arb.models import *
-from shared.validations import validate_email, validate_phone_number
+from typing import Tuple
 
+from environs import Env
+from flask import Flask, Response, jsonify, render_template, request
+
+from arb.models import *
+from extensions import db, migrate
+from shared.validations import validate_email, validate_phone_number
 
 env = Env()
 env.read_env()
@@ -43,7 +44,7 @@ def create_app():
         
     migrate.init_app(app, db)
 
-    def validate_user_input(data: dict) -> tuple[bool, dict]:
+    def validate_user_input(data: dict) -> Tuple[bool, dict]:
         if not validate_email(data['email']):
             return False, {'message': 'Email not valid'}
         if not validate_phone_number(data['phone']):

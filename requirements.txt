@@ -1,4 +1,11 @@
-environs==9.5.0
 Flask==2.2.3
 Flask-Migrate==4.0.4
 Flask-SQLAlchemy==3.0.3
+
+
+# Flask-Minify
+# Flask-Dance
+# blinker
+# flask_wtf
+# WTForms
+# email_validator
